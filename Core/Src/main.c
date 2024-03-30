@@ -48,7 +48,7 @@
 
 /* USER CODE BEGIN PV */
 float versionID = 1.000;
-float buildID = 1.000;
+float buildID = 1.010;
 
 tCURSOR_DATA currentCursorPosition;
 

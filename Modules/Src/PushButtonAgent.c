@@ -10,8 +10,6 @@
 uint32_t lastLEDButtonPressed = 0;
 uint32_t lastFANButtonPressed = 0;
 
-int32_t setPointValue[2] = {25, 25};
-
 void checkButtons(void)
 {
 	//LED Button - SW7
@@ -21,10 +19,12 @@ void checkButtons(void)
 		if (LEDSwitchState == SwitchOff)
 		{
 			LEDSwitchState = SwitchOn;
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
 		}
 		else
 		{
 			LEDSwitchState = SwitchOff;
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
 		}
 
 	}
@@ -36,10 +36,12 @@ void checkButtons(void)
 		if (FANSwitchState == SwitchOff)
 		{
 			FANSwitchState = SwitchOn;
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0, GPIO_PIN_SET);
 		}
 		else
 		{
 			FANSwitchState = SwitchOff;
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0, GPIO_PIN_RESET);
 		}
 	}
 }

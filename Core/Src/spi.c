@@ -39,7 +39,7 @@ void MX_SPI1_Init(void)
   /* USER CODE END SPI1_Init 1 */
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_MASTER;
-  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi1.Init.Direction = SPI_DIRECTION_1LINE;
   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
@@ -74,11 +74,9 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* spiHandle)
     __HAL_RCC_SPI1_CLK_ENABLE();
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
-    __HAL_RCC_GPIOB_CLK_ENABLE();
     /**SPI1 GPIO Configuration
     PA5     ------> SPI1_SCK
     PA7     ------> SPI1_MOSI
-    PB4     ------> SPI1_MISO
     */
     GPIO_InitStruct.Pin = SPI_SCK_LCD_Pin|SPI_MOSI_LCD_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -86,13 +84,6 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* spiHandle)
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = SPI1_MISO_LCD_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
-    HAL_GPIO_Init(SPI1_MISO_LCD_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN SPI1_MspInit 1 */
 
@@ -114,11 +105,8 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* spiHandle)
     /**SPI1 GPIO Configuration
     PA5     ------> SPI1_SCK
     PA7     ------> SPI1_MOSI
-    PB4     ------> SPI1_MISO
     */
     HAL_GPIO_DeInit(GPIOA, SPI_SCK_LCD_Pin|SPI_MOSI_LCD_Pin);
-
-    HAL_GPIO_DeInit(SPI1_MISO_LCD_GPIO_Port, SPI1_MISO_LCD_Pin);
 
   /* USER CODE BEGIN SPI1_MspDeInit 1 */
 
