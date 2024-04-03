@@ -12,6 +12,7 @@
 #include "LogoImages.h"
 #include "LEDImages.h"
 #include "FanImages.h"
+#include "BatteryImages.h"
 #include "LCD_Test.h"
 #include "LCD_1in8.h"
 #include "DEV_Config.h"
@@ -247,6 +248,37 @@ void screenUpdate(bool drawDeltaImage)
 			}
 		}
 
+		/* LiPo Battery charger State Indication*/
+		switch (BatteryChargerSwitchState)
+		{
+			case (SwitchOff):
+			{
+				addImageToNextFrame(gImage_FanOff, 40, 40, 45, 30);
+				break;
+			}
+			case (SwitchOn):
+			{
+				addImageToNextFrame(gImage_FanOn, 40, 40, 45, 30);
+				break;
+			}
+			default:
+			{
+				break;
+			}
+		}
+
+
+		//(XCenterstart, Ystart, pString, textColor, backgroundColor, numberOfCharactersToClear, localFont)
+		char localAmps[5]= "";
+		sprintf(localAmps,"%d", (uint16_t)milliAmpsForDisplay);
+		if (milliAmpsForDisplay <= 2500)
+		{
+			centeredString(64, 86, localAmps, WHITE, BLACK, 8, Font8);
+		}
+		else
+		{
+			centeredString(64, 86, localAmps, RED, BLACK, 8, Font8);
+		}
 
 	}
 	else if (isMenuDisplayed)

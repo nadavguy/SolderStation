@@ -9,6 +9,7 @@
 
 uint32_t lastLEDButtonPressed = 0;
 uint32_t lastFANButtonPressed = 0;
+uint32_t lastBatteryChargerButtonPressed = 0;
 
 void checkButtons(void)
 {
@@ -42,6 +43,22 @@ void checkButtons(void)
 		{
 			FANSwitchState = SwitchOff;
 			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0, GPIO_PIN_RESET);
+		}
+	}
+
+	//Battery Charge Button - SW2
+	if ( (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_5) == GPIO_PIN_RESET) && (HAL_GetTick() - lastBatteryChargerButtonPressed >= 400) )
+	{
+		lastBatteryChargerButtonPressed = HAL_GetTick();
+		if (BatteryChargerSwitchState == SwitchOff)
+		{
+			BatteryChargerSwitchState = SwitchOn;
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_1, GPIO_PIN_RESET);
+		}
+		else
+		{
+			BatteryChargerSwitchState = SwitchOff;
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_1, GPIO_PIN_SET);
 		}
 	}
 }

@@ -139,6 +139,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 	}
 	memcpy(&ampReadingArray[0], &ampReadingArray[1], (100 - 1));
 	float localAmpMeasuremnt = (3.3 * (ampReading ) / 4096.0) / 0.4;
+	milliAmpsForDisplay = (uint16_t)(localAmpMeasuremnt * 1000.0);
 	ampReadingArray[99] = (uint8_t)(160 - 20 * (localAmpMeasuremnt));
 
 }

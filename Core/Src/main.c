@@ -48,16 +48,21 @@
 
 /* USER CODE BEGIN PV */
 float versionID = 1.000;
-float buildID = 1.010;
+float buildID = 1.020;
 
 tCURSOR_DATA currentCursorPosition;
 
 tSwitchState LEDSwitchState = SwitchOff;
 tSwitchState FANSwitchState = SwitchOff;
+tSwitchState BatteryChargerSwitchState = SwitchOff;
 
 uint32_t tenHzCycle = 0;
 
 uint8_t ampReadingArray[100] = {0};
+
+uint16_t milliAmpsForDisplay = 0;
+
+bool isBatteryCharging = false;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -120,9 +125,20 @@ int main(void)
   {
 	  checkButtons();
 
+	  /*Read Current
+	   * Read Li-Ion charge state*/
 	  if (HAL_GetTick() - tenHzCycle >= 100)
 	  {
 		  HAL_ADC_Start_IT(&hadc1);
+
+		  if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_All) == GPIO_PIN_RESET)
+		  {
+			  isBatteryCharging = true;
+		  }
+		  else
+		  {
+			  isBatteryCharging = false;
+		  }
 		  tenHzCycle = HAL_GetTick();
 	  }
     /* USER CODE END WHILE */

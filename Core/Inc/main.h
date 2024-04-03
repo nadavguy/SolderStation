@@ -94,18 +94,20 @@ void Error_Handler(void);
 #define GPIO_Input_Trigger_GPIO_Port GPIOE
 #define GPIO_Output_LCD_CS_Pin GPIO_PIN_6
 #define GPIO_Output_LCD_CS_GPIO_Port GPIOC
+#define GPIO_Input_ChargeDetect_Pin GPIO_PIN_9
+#define GPIO_Input_ChargeDetect_GPIO_Port GPIOA
 #define GPIO_Input_Up_Pin GPIO_PIN_3
 #define GPIO_Input_Up_GPIO_Port GPIOD
 #define GPIO_Input_Down_Pin GPIO_PIN_4
 #define GPIO_Input_Down_GPIO_Port GPIOD
-#define GPIO_Input_Ok_Pin GPIO_PIN_7
-#define GPIO_Input_Ok_GPIO_Port GPIOD
+#define GPIO_Input_ChargeBattery_Pin GPIO_PIN_7
+#define GPIO_Input_ChargeBattery_GPIO_Port GPIOD
 #define GPIO_Output_LED_Pin GPIO_PIN_4
 #define GPIO_Output_LED_GPIO_Port GPIOB
 #define GPIO_Output_FAN_Pin GPIO_PIN_0
 #define GPIO_Output_FAN_GPIO_Port GPIOE
-#define GPIO_Input_ChargeEN__Pin GPIO_PIN_1
-#define GPIO_Input_ChargeEN__GPIO_Port GPIOE
+#define GPIO_Output_ChargeEN__Pin GPIO_PIN_1
+#define GPIO_Output_ChargeEN__GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
 extern float versionID;
@@ -113,9 +115,14 @@ extern float buildID;
 
 extern uint8_t ampReadingArray[100];
 
+extern uint16_t milliAmpsForDisplay;
+
+extern bool isBatteryCharging;
+
 extern tCURSOR_DATA currentCursorPosition;
 extern tSwitchState LEDSwitchState;
 extern tSwitchState FANSwitchState;
+extern tSwitchState BatteryChargerSwitchState;
 
 /* USER CODE END Private defines */
 
