@@ -100,8 +100,8 @@ void Error_Handler(void);
 #define GPIO_Input_Up_GPIO_Port GPIOD
 #define GPIO_Input_Down_Pin GPIO_PIN_4
 #define GPIO_Input_Down_GPIO_Port GPIOD
-#define GPIO_Input_ChargeBattery_Pin GPIO_PIN_7
-#define GPIO_Input_ChargeBattery_GPIO_Port GPIOD
+#define GPIO_Input_ChargeBattery_SW2_Pin GPIO_PIN_7
+#define GPIO_Input_ChargeBattery_SW2_GPIO_Port GPIOD
 #define GPIO_Output_LED_Pin GPIO_PIN_4
 #define GPIO_Output_LED_GPIO_Port GPIOB
 #define GPIO_Output_FAN_Pin GPIO_PIN_0

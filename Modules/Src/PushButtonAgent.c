@@ -47,7 +47,7 @@ void checkButtons(void)
 	}
 
 	//Battery Charge Button - SW2
-	if ( (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_5) == GPIO_PIN_RESET) && (HAL_GetTick() - lastBatteryChargerButtonPressed >= 400) )
+	if ( (HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_7) == GPIO_PIN_RESET) && (HAL_GetTick() - lastBatteryChargerButtonPressed >= 400) )
 	{
 		lastBatteryChargerButtonPressed = HAL_GetTick();
 		if (BatteryChargerSwitchState == SwitchOff)

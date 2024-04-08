@@ -150,10 +150,10 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = GPIO_Input_ChargeBattery_Pin;
+  GPIO_InitStruct.Pin = GPIO_Input_ChargeBattery_SW2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIO_Input_ChargeBattery_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIO_Input_ChargeBattery_SW2_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PtPin */
   GPIO_InitStruct.Pin = GPIO_Output_LED_Pin;

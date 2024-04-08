@@ -249,22 +249,30 @@ void screenUpdate(bool drawDeltaImage)
 		}
 
 		/* LiPo Battery charger State Indication*/
-		switch (BatteryChargerSwitchState)
+//		switch (BatteryChargerSwitchState)
+//		{
+//			case (SwitchOff):
+//			{
+//				addImageToNextFrame(gImage_ChargingOff, 40, 40, 85, 30);
+//				break;
+//			}
+//			case (SwitchOn):
+//			{
+//				addImageToNextFrame(gImage_ChargingBattery, 40, 40, 85, 30);
+//				break;
+//			}
+//			default:
+//			{
+//				break;
+//			}
+//		}
+		if (isBatteryCharging)
 		{
-			case (SwitchOff):
-			{
-				addImageToNextFrame(gImage_FanOff, 40, 40, 45, 30);
-				break;
-			}
-			case (SwitchOn):
-			{
-				addImageToNextFrame(gImage_FanOn, 40, 40, 45, 30);
-				break;
-			}
-			default:
-			{
-				break;
-			}
+			addImageToNextFrame(gImage_ChargingBattery, 40, 18, 85, 30);
+		}
+		else
+		{
+			addImageToNextFrame(gImage_ChargingOff, 40, 18, 85, 30);
 		}
 
 

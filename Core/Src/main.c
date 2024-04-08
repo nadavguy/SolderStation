@@ -48,7 +48,7 @@
 
 /* USER CODE BEGIN PV */
 float versionID = 1.000;
-float buildID = 1.020;
+float buildID = 1.030;
 
 tCURSOR_DATA currentCursorPosition;
 
@@ -131,7 +131,7 @@ int main(void)
 	  {
 		  HAL_ADC_Start_IT(&hadc1);
 
-		  if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_All) == GPIO_PIN_RESET)
+		  if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9) == GPIO_PIN_RESET)
 		  {
 			  isBatteryCharging = true;
 		  }
