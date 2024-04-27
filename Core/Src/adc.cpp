@@ -21,7 +21,7 @@
 #include "adc.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "CPPAgent.hpp"
 /* USER CODE END 0 */
 
 ADC_HandleTypeDef hadc1;
@@ -139,8 +139,11 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 	}
 	memcpy(&ampReadingArray[0], &ampReadingArray[1], (100 - 1));
 	float localAmpMeasuremnt = (3.3 * (ampReading ) / 4096.0) / 0.4;
-	milliAmpsForDisplay = (uint16_t)(localAmpMeasuremnt * 1000.0);
-	ampReadingArray[99] = (uint8_t)(160 - 20 * (localAmpMeasuremnt));
+	float localAmpMeasuremntFiltered = currentKF.getFilteredValue(localAmpMeasuremnt);
+	milliAmpsForDisplay = (uint16_t)(localAmpMeasuremntFiltered * 1000.0);
+	ampReadingArray[99] = (uint8_t)(160 - 20 * (localAmpMeasuremntFiltered));
+
+//	current
 
 }
 /* USER CODE END 1 */

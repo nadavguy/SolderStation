@@ -27,6 +27,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "GUI_Paint.h"
+#include "CPPAgent.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,7 +49,7 @@
 
 /* USER CODE BEGIN PV */
 float versionID = 1.000;
-float buildID = 1.030;
+float buildID = 1.040;
 
 tCURSOR_DATA currentCursorPosition;
 
@@ -63,6 +64,7 @@ uint8_t ampReadingArray[100] = {0};
 uint16_t milliAmpsForDisplay = 0;
 
 bool isBatteryCharging = false;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -83,7 +85,10 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+//	if (__HAL_PWR_GET_FLAG(PWR_FLAG_SB) != RESET)
+//	{
+//		__HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);  // clear the flag
+//	}
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
