@@ -49,7 +49,7 @@
 
 /* USER CODE BEGIN PV */
 float versionID = 1.000;
-float buildID = 1.040;
+float buildID = 1.050;
 
 tCURSOR_DATA currentCursorPosition;
 
@@ -60,8 +60,10 @@ tSwitchState BatteryChargerSwitchState = SwitchOff;
 uint32_t tenHzCycle = 0;
 
 uint8_t ampReadingArray[100] = {0};
+uint8_t ampReadingArrayFiltered[100] = {0};
 
 uint16_t milliAmpsForDisplay = 0;
+uint16_t milliAmpsForDisplayFiltered = 0;
 
 bool isBatteryCharging = false;
 
@@ -120,6 +122,7 @@ int main(void)
   renderCompleteFrame = true;
 
   memset(ampReadingArray, 160, sizeof(ampReadingArray));
+  memset(ampReadingArrayFiltered, 160, sizeof(ampReadingArrayFiltered));
 
   HAL_ADC_Start_IT(&hadc1);
   /* USER CODE END 2 */

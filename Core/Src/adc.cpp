@@ -63,7 +63,7 @@ void MX_ADC1_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_1;
   sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_84CYCLES;
+  sConfig.SamplingTime = ADC_SAMPLETIME_144CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -138,10 +138,15 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 		ampReading = 0;
 	}
 	memcpy(&ampReadingArray[0], &ampReadingArray[1], (100 - 1));
+	memcpy(&ampReadingArrayFiltered[0], &ampReadingArrayFiltered[1], (100 - 1));
 	float localAmpMeasuremnt = (3.3 * (ampReading ) / 4096.0) / 0.4;
 	float localAmpMeasuremntFiltered = currentKF.getFilteredValue(localAmpMeasuremnt);
-	milliAmpsForDisplay = (uint16_t)(localAmpMeasuremntFiltered * 1000.0);
-	ampReadingArray[99] = (uint8_t)(160 - 20 * (localAmpMeasuremntFiltered));
+
+	milliAmpsForDisplay = (uint16_t)(localAmpMeasuremnt * 1000.0);
+	ampReadingArray[99] = (uint8_t)(160 - 20 * (localAmpMeasuremnt));
+
+	milliAmpsForDisplayFiltered = (uint16_t)(localAmpMeasuremntFiltered * 1000.0);
+	ampReadingArrayFiltered[99] = (uint8_t)(160 - 20 * (localAmpMeasuremntFiltered));
 
 //	current
 

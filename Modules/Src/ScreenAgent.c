@@ -210,6 +210,11 @@ void screenUpdate(bool drawDeltaImage)
 			Paint_DrawLine(20 + i, ampReadingArray[i], 20 + i, ampReadingArray[i + 1], CYAN, DOT_PIXEL_1X1, LINE_STYLE_SOLID); // Horizontal line
 		}
 
+		for (int i = 0; i <= 98; i++)
+		{
+			Paint_DrawLine(20 + i, ampReadingArrayFiltered[i], 20 + i, ampReadingArrayFiltered[i + 1], RED, DOT_PIXEL_1X1, LINE_STYLE_SOLID); // Horizontal line
+		}
+
 		/*LED State Indication*/
 		switch (LEDSwitchState)
 		{

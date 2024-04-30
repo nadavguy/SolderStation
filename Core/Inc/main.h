@@ -114,8 +114,10 @@ extern float versionID;
 extern float buildID;
 
 extern uint8_t ampReadingArray[100];
+extern uint8_t ampReadingArrayFiltered[100];
 
 extern uint16_t milliAmpsForDisplay;
+extern uint16_t milliAmpsForDisplayFiltered;
 
 extern bool isBatteryCharging;
 
